@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript 基础知识练习</title>
+  <style>
+    body {
+      font-family: "Microsoft YaHei", Arial, sans-serif;
+      max-width: 860px;
+      margin: 30px auto;
+      padding: 0 20px;
+      background: #f5f7fa;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      border-bottom: 3px solid #3498db;
+      padding-bottom: 12px;
+    }
+    h2 {
+      color: #2980b9;
+      margin-top: 30px;
+    }
+    .section {
+      background: #fff;
+      border-radius: 8px;
+      padding: 18px 24px;
+      margin-bottom: 22px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    pre {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 14px 18px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .output-box {
+      background: #ecf9ec;
+      border-left: 4px solid #27ae60;
+      padding: 10px 16px;
+      margin-top: 10px;
+      border-radius: 0 6px 6px 0;
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .label {
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>JavaScript 基础知识练习</h1>
+
+<!-- ======================================
+     一、变量的定义
+     ====================================== -->
+<div class="section">
+  <h2>一、变量的定义</h2>
+  <pre>
+// 使用 var（函数作用域，ES5 方式）
+var name = "张三";
+
+// 使用 let（块作用域，ES6，可重新赋值）
+let age = 20;
+age = 21;               // 重新赋值
+
+// 使用 const（块作用域，ES6，常量，不可重新赋值）
+const PI = 3.14159;
+
+// 同时声明多个变量
+let x = 10, y = 20, z;  // z 未赋值，默认为 undefined
+  </pre>
+  <div class="label">运行结果：</div>
+  <div class="output-box" id="out-var"></div>
+</div>
+
+<!-- ======================================
+     二、变量类型
+     ====================================== -->
+<div class="section">
+  <h2>二、变量类型</h2>
+  <pre>
+// 基本类型（原始类型）
+let str    = "Hello, World!";   // String（字符串）
+let num    = 42;                // Number（数字）
+let flt    = 3.14;              // Number（浮点数）
+let bool   = true;              // Boolean（布尔值）
+let n      = null;              // Null
+let u      = undefined;         // Undefined
+let sym    = Symbol("id");      // Symbol（ES6）
+
+// 引用类型
+let arr    = [1, 2, 3, "four"]; // Array（数组）
+let obj    = { name:"李四", score: 95 }; // Object（对象）
+let fn     = function(a){ return a * 2; }; // Function（函数也是对象）
+
+// typeof 检测类型
+console.log(typeof str, typeof num, typeof bool);
+console.log(typeof n, typeof u);   // "object"(历史遗留), "undefined"
+  </pre>
+  <div class="label">运行结果：</div>
+  <div class="output-box" id="out-type"></div>
+</div>
+
+<!-- ======================================
+     三、表达式
+     ====================================== -->
+<div class="section">
+  <h2>三、表达式</h2>
+  <pre>
+// 算术运算
+let a = 10, b = 3;
+let sum  = a + b;    // 加  → 13
+let diff = a - b;    // 减  → 7
+let prod = a * b;    // 乘  → 30
+let quot = a / b;    // 除  → 3.333...
+let rem  = a % b;    // 取余→ 1
+let pow  = a ** b;   // 幂  → 1000 (ES7)
+
+// 比较运算（返回布尔值）
+let eq  = (5 == "5");   // true  （类型转换后相等）
+let seq = (5 === "5");  // false （严格相等，类型不同）
+let gt  = (a > b);      // true
+
+// 逻辑运算
+let andVal = (true && false);  // false
+let orVal  = (true || false);  // true
+let notVal = !true;            // false
+
+// 字符串拼接
+let greeting = "你好，" + "JavaScript！";
+
+// 三元（条件）表达式
+let score = 88;
+let grade = score >= 90 ? "优秀" : score >= 60 ? "及格" : "不及格";
+  </pre>
+  <div class="label">运行结果：</div>
+  <div class="output-box" id="out-expr"></div>
+</div>
+
+<!-- ======================================
+     四、流程控制
+     ====================================== -->
+<div class="section">
+  <h2>四、流程控制</h2>
+  <pre>
+// --- if / else if / else ---
+let temperature = 28;
+if (temperature >= 35) {
+  console.log("高温预警");
+} else if (temperature >= 25) {
+  console.log("天气较热：" + temperature + "°C");
+} else {
+  console.log("气温适宜");
+}
+
+// --- switch ---
+let day = new Date().getDay();  // 0=周日, 6=周六
+switch (day) {
+  case 0: case 6:
+    console.log("今天是周末"); break;
+  default:
+    console.log("今天是工作日（" + day + "）");
+}
+
+// --- for 循环 ---
+let forResult = "";
+for (let i = 1; i <= 5; i++) {
+  forResult += i + " ";
+}
+console.log("for 1-5:", forResult.trim());
+
+// --- while 循环 ---
+let n = 1, whileResult = 0;
+while (n <= 100) {
+  whileResult += n;
+  n++;
+}
+console.log("while 1+2+...+100 =", whileResult);
+
+// --- for...of 遍历数组 ---
+let fruits = ["苹果", "香蕉", "橙子"];
+let fruitStr = "";
+for (let fruit of fruits) {
+  fruitStr += fruit + " ";
+}
+console.log("for...of:", fruitStr.trim());
+
+// --- for...in 遍历对象属性 ---
+let person = { name: "王五", age: 22, city: "北京" };
+let personStr = "";
+for (let key in person) {
+  personStr += key + ":" + person[key] + "  ";
+}
+console.log("for...in:", personStr.trim());
+
+// --- break 与 continue ---
+let breakDemo = "";
+for (let i = 0; i < 10; i++) {
+  if (i === 3) continue;   // 跳过 3
+  if (i === 7) break;      // 遇到 7 退出
+  breakDemo += i + " ";
+}
+console.log("break/continue:", breakDemo.trim());
+  </pre>
+  <div class="label">运行结果：</div>
+  <div class="output-box" id="out-flow"></div>
+</div>
+
+<!-- ======================================
+     五、函数
+     ====================================== -->
+<div class="section">
+  <h2>五、函数</h2>
+  <pre>
+// 1. 函数声明（可提升）
+function add(a, b) {
+  return a + b;
+}
+console.log("add(3, 4) =", add(3, 4));
+
+// 2. 函数表达式（赋值给变量）
+const multiply = function(a, b) {
+  return a * b;
+};
+console.log("multiply(6, 7) =", multiply(6, 7));
+
+// 3. 箭头函数（ES6，简洁语法）
+const square = n => n * n;
+const greet  = (name, title = "同学") => `你好，${title}${name}！`;
+console.log("square(9) =", square(9));
+console.log(greet("小明"));
+console.log(greet("老师", ""));
+
+// 4. 默认参数 & 剩余参数
+function sum(...nums) {
+  return nums.reduce((acc, cur) => acc + cur, 0);
+}
+console.log("sum(1,2,3,4,5) =", sum(1, 2, 3, 4, 5));
+
+// 5. 递归函数（计算阶乘）
+function factorial(n) {
+  if (n <= 1) return 1;
+  return n * factorial(n - 1);
+}
+console.log("factorial(6) =", factorial(6));
+
+// 6. 高阶函数（函数作为参数）
+const nums = [1, 2, 3, 4, 5, 6];
+const evens = nums.filter(n => n % 2 === 0);
+const doubled = nums.map(n => n * 2);
+console.log("filter 偶数:", evens.join(", "));
+console.log("map 翻倍:", doubled.join(", "));
+
+// 7. 闭包（函数访问外部作用域变量）
+function makeCounter(start = 0) {
+  let count = start;
+  return {
+    increment() { return ++count; },
+    decrement() { return --count; },
+    value()     { return count;   }
+  };
+}
+const counter = makeCounter(10);
+counter.increment(); counter.increment(); counter.decrement();
+console.log("闭包计数器值:", counter.value()); // 11
+  </pre>
+  <div class="label">运行结果：</div>
+  <div class="output-box" id="out-func"></div>
+</div>
+
+<script>
+  /* ============================================================
+     工具函数：将 console.log 输出捕获并显示到指定容器
+  ============================================================ */
+  function captureLog(containerId, fn) {
+    const box = document.getElementById(containerId);
+    const lines = [];
+    const origLog = console.log;
+    console.log = (...args) => {
+      lines.push(args.map(a => (typeof a === 'object' ? JSON.stringify(a) : String(a))).join(' '));
+    };
+    try { fn(); } catch(e) { lines.push('[错误] ' + e.message); }
+    console.log = origLog;
+    box.textContent = lines.join('\n');
+  }
+
+  /* ============================================================
+     一、变量的定义
+  ============================================================ */
+  captureLog('out-var', () => {
+    var name = '张三';
+    let age = 20;
+    age = 21;
+    const PI = 3.14159;
+    let x = 10, y = 20, z;
+
+    console.log('var name =', name);
+    console.log('let age (重新赋值后) =', age);
+    console.log('const PI =', PI);
+    console.log('x =', x, ', y =', y, ', z =', z);
+  });
+
+  /* ============================================================
+     二、变量类型
+  ============================================================ */
+  captureLog('out-type', () => {
+    let str  = 'Hello, World!';
+    let num  = 42;
+    let flt  = 3.14;
+    let bool = true;
+    let n    = null;
+    let u    = undefined;
+    let sym  = Symbol('id');
+    let arr  = [1, 2, 3, 'four'];
+    let obj  = { name: '李四', score: 95 };
+    let fn   = function(a) { return a * 2; };
+
+    console.log('str  :', str,  ' → typeof:', typeof str);
+    console.log('num  :', num,  ' → typeof:', typeof num);
+    console.log('flt  :', flt,  ' → typeof:', typeof flt);
+    console.log('bool :', bool, ' → typeof:', typeof bool);
+    console.log('null :', n,    ' → typeof:', typeof n, '（历史遗留问题）');
+    console.log('undef:', u,    ' → typeof:', typeof u);
+    console.log('sym  :', sym.toString(), ' → typeof:', typeof sym);
+    console.log('arr  :', JSON.stringify(arr), ' → Array.isArray:', Array.isArray(arr));
+    console.log('obj  :', JSON.stringify(obj), ' → typeof:', typeof obj);
+    console.log('fn   → typeof:', typeof fn);
+  });
+
+  /* ============================================================
+     三、表达式
+  ============================================================ */
+  captureLog('out-expr', () => {
+    let a = 10, b = 3;
+    console.log('算术运算：');
+    console.log('  a + b =', a + b);
+    console.log('  a - b =', a - b);
+    console.log('  a * b =', a * b);
+    console.log('  a / b =', (a / b).toFixed(4));
+    console.log('  a % b =', a % b);
+    console.log('  a ** b =', a ** b);
+
+    console.log('比较运算：');
+    console.log('  5 == "5"  →', 5 == '5');
+    console.log('  5 === "5" →', 5 === '5');
+    console.log('  a > b     →', a > b);
+
+    console.log('逻辑运算：');
+    console.log('  true && false →', true && false);
+    console.log('  true || false →', true || false);
+    console.log('  !true         →', !true);
+
+    let greeting = '你好，' + 'JavaScript！';
+    console.log('字符串拼接:', greeting);
+
+    let score = 88;
+    let grade = score >= 90 ? '优秀' : score >= 60 ? '及格' : '不及格';
+    console.log('三元表达式（score=' + score + '）→ 等级:', grade);
+  });
+
+  /* ============================================================
+     四、流程控制
+  ============================================================ */
+  captureLog('out-flow', () => {
+    // if / else if / else
+    let temperature = 28;
+    if (temperature >= 35) {
+      console.log('高温预警');
+    } else if (temperature >= 25) {
+      console.log('天气较热：' + temperature + '°C');
+    } else {
+      console.log('气温适宜');
+    }
+
+    // switch
+    let day = new Date().getDay();
+    switch (day) {
+      case 0: case 6:
+        console.log('今天是周末'); break;
+      default:
+        console.log('今天是工作日（' + day + '）');
+    }
+
+    // for 循环
+    let forResult = '';
+    for (let i = 1; i <= 5; i++) forResult += i + ' ';
+    console.log('for 1-5:', forResult.trim());
+
+    // while 循环
+    let cnt = 1, whileResult = 0;
+    while (cnt <= 100) { whileResult += cnt; cnt++; }
+    console.log('1+2+...+100 =', whileResult);
+
+    // for...of
+    let fruits = ['苹果', '香蕉', '橙子'];
+    let fruitStr = '';
+    for (let fruit of fruits) fruitStr += fruit + ' ';
+    console.log('for...of:', fruitStr.trim());
+
+    // for...in
+    let person = { name: '王五', age: 22, city: '北京' };
+    let personStr = '';
+    for (let key in person) personStr += key + ':' + person[key] + '  ';
+    console.log('for...in:', personStr.trim());
+
+    // break & continue
+    let breakDemo = '';
+    for (let i = 0; i < 10; i++) {
+      if (i === 3) continue;
+      if (i === 7) break;
+      breakDemo += i + ' ';
+    }
+    console.log('break/continue:', breakDemo.trim());
+  });
+
+  /* ============================================================
+     五、函数
+  ============================================================ */
+  captureLog('out-func', () => {
+    // 1. 函数声明
+    function add(a, b) { return a + b; }
+    console.log('add(3, 4) =', add(3, 4));
+
+    // 2. 函数表达式
+    const multiply = function(a, b) { return a * b; };
+    console.log('multiply(6, 7) =', multiply(6, 7));
+
+    // 3. 箭头函数
+    const square = n => n * n;
+    const greet  = (name, title = '同学') => `你好，${title}${name}！`;
+    console.log('square(9) =', square(9));
+    console.log(greet('小明'));
+    console.log(greet('老师', ''));
+
+    // 4. 剩余参数
+    function sum(...nums) { return nums.reduce((acc, cur) => acc + cur, 0); }
+    console.log('sum(1,2,3,4,5) =', sum(1, 2, 3, 4, 5));
+
+    // 5. 递归
+    function factorial(n) { return n <= 1 ? 1 : n * factorial(n - 1); }
+    console.log('factorial(6) =', factorial(6));
+
+    // 6. 高阶函数
+    const nums2 = [1, 2, 3, 4, 5, 6];
+    const evens   = nums2.filter(n => n % 2 === 0);
+    const doubled = nums2.map(n => n * 2);
+    console.log('filter 偶数:', evens.join(', '));
+    console.log('map 翻倍:', doubled.join(', '));
+
+    // 7. 闭包
+    function makeCounter(start) {
+      let count = start;
+      return {
+        increment() { return ++count; },
+        decrement() { return --count; },
+        value()     { return count;   }
+      };
+    }
+    const counter = makeCounter(10);
+    counter.increment(); counter.increment(); counter.decrement();
+    console.log('闭包计数器值:', counter.value());
+  });
+</script>
+
+</body>
+</html>
